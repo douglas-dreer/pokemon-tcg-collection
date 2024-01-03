@@ -1,5 +1,6 @@
 package com.nintendo.tcg.pokemon.sdk.model.common;
 
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nintendo.tcg.pokemon.sdk.utility.Converter;
 import lombok.NoArgsConstructor;

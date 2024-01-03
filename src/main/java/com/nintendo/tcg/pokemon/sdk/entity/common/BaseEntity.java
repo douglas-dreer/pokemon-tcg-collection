@@ -29,7 +29,7 @@ public abstract class BaseEntity<T> {
         return convertTo(this, modelClass);
     }
 
-    public String toJSON(BaseEntity<T> tBaseEntity) throws JsonProcessingException {
+    public String toJSON(BaseEntity<T> BaseEntity) throws JsonProcessingException {
         return toJSON(this);
     }
 

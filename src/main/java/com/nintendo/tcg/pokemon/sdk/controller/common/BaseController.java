@@ -37,7 +37,7 @@ public abstract class BaseController<T extends BaseEntity, M extends BaseModel, 
     public ResponseEntity<M> save(@Validated @RequestBody M model, HttpServletRequest request) throws URISyntaxException {
         try {
             M savedEntity = service.save(model);
-            URI location = new URI(String.format("%s/%s", request.getRequestURL(), savedEntity.getId()));
+            URI location = new URI(String.format("%s/%s", request.getRequestURL(), savedEntity.getUuid()));
             return ResponseEntity.created(location).body(savedEntity);
         } catch (BusinessException e) {
             return ResponseEntity.internalServerError().build();
@@ -52,7 +52,7 @@ public abstract class BaseController<T extends BaseEntity, M extends BaseModel, 
             return ResponseEntity.notFound().build();
         }
 
-        if (!model.getId().equals(uuid)) {
+        if (!model.getUuid().equals(uuid)) {
             return ResponseEntity.badRequest().build();
         }
 
