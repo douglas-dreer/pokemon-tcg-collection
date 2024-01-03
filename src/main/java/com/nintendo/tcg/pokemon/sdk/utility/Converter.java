@@ -1,11 +1,14 @@
 package com.nintendo.tcg.pokemon.sdk.utility;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Component;
+import java.lang.reflect.Type;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,5 +40,10 @@ public class Converter {
 
     public static <D> D toObject(String jsonData, Class<D> targetClass) throws IOException {
         return mapper.readValue(jsonData, targetClass);
+    }
+
+    public static <K, T> List<K> toList(String contentJSON, Class<T> targetClass) throws JsonProcessingException {
+        Type type = mapper.getTypeFactory().constructCollectionType(List.class, targetClass);
+        return mapper.readValue(contentJSON, (JavaType) type);
     }
 }

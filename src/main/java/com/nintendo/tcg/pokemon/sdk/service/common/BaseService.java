@@ -9,9 +9,10 @@ import java.util.UUID;
 public interface BaseService<T extends BaseEntity, M extends BaseModel> {
     List<M> list();
 
-    M findById(UUID id);
+    M findByUUID(UUID id);
 
     M save(M model);
+    List<M> saveAll(List<M> modelList);
 
     M edit(M model);
 

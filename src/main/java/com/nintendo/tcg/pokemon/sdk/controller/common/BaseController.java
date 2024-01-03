@@ -30,7 +30,7 @@ public abstract class BaseController<T extends BaseEntity, M extends BaseModel, 
 
     @GetMapping("/{id}")
     public ResponseEntity<M> findById(@PathVariable("id") UUID id) {
-        return ResponseEntity.of(Optional.ofNullable(service.findById(id)));
+        return ResponseEntity.of(Optional.ofNullable(service.findByUUID(id)));
     }
 
     @PostMapping
