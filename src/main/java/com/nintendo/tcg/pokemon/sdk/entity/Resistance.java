@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
 
@@ -16,8 +17,10 @@ import java.util.UUID;
 @Builder
 public class Resistance extends BaseEntity<ResistanceDTO> {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(columnDefinition = "BINARY(16)")
+    private UUID uui;
     @ManyToOne
     @JoinColumn(name = "pokemon_type_uuid", referencedColumnName = "uuid")
     private PokemonType type;

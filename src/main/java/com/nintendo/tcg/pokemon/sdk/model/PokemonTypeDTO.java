@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -26,4 +27,5 @@ public class PokemonTypeDTO extends BaseModel<PokemonType> {
         super(PokemonType.class);
         this.name = PokemonTypeEnum.findByName(value);
     }
+
 }

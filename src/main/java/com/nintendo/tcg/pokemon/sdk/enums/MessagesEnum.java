@@ -16,6 +16,8 @@ public enum MessagesEnum {
     //POKEMON_SET
     POKEMON_SET_EXPORT_SUCCESS(200, "Pokémon Set exportados com sucesso", "Successfully exported Pokemon sets: {}"),
     POKEMON_SET_EXPORT_ERROR(500, "Erro ao exportar dados", "Error exporting data: {}"),
+    POKEMON_SET_IMPORT_SUCCESS(200, "Pokémon Set importados com sucesso", "Successfully import Pokemon sets: {}"),
+    POKEMON_SET_IMPORT_ERROR(500, "Erro ao importado dados", "Error importing data: {}"),
     POKEMON_SET_NOT_FOUND(404, "Pokémon set não foi encontrado", "Pokemon set not found"),
     POKEMON_SET_FORMAT_INVALID_EXPORT(400, "Formato de entrada não é valido para exportação", "Input format is not valid for export"),
 
@@ -26,6 +28,8 @@ public enum MessagesEnum {
 
     //POKEMON_TYPE
     POKEMON_TYPE_NOT_FOUND(404, "Tipo de Pokémon não encontrado: {}", "Pokémon type not found: {}"),
+    POKEMON_TYPE_EXPORT_SUCCESS(200, "Tipo de Pokémon exportado com sucesso", ""),
+    POKEMON_TYPE_EXPORT_ERROR(200, "Erro ao exportar dados", ""),
 
     //POKEMON_SUPER_TYPE
     POKEMON_SUPERTYPE_NOT_FOUND(404, "Supertype de Pokémon não encontrado: {}", "Pokémon supertype not found: {}"),
