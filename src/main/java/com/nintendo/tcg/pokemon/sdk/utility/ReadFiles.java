@@ -9,8 +9,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import static com.nintendo.tcg.pokemon.sdk.utility.Converter.toList;
-
 @Log4j2
 public class ReadFiles {
     public static <T> List<T> readAndConvertFile(String filePath, Class<T> targetClass) throws IOException {

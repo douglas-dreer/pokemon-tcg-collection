@@ -12,6 +12,7 @@ public interface BaseService<T extends BaseEntity, M extends BaseModel> {
     M findByUUID(UUID id);
 
     M save(M model);
+
     List<M> saveAll(List<M> modelList);
 
     M edit(M model);

@@ -22,10 +22,9 @@ import static com.nintendo.tcg.pokemon.sdk.utility.ReadFiles.readAndConvertFile;
 @AllArgsConstructor
 @Log4j2
 public class PokemonSetServiceImpl implements PokemonSetService {
-
+    private static final String FILENAME = "static/data/pokemon-set/pokemon-set.json";
+    private static final String language = "pt-BR";
     private PokemonSetRepository repository;
-
-    private static final String FILENAME = "static/pokemon-set.json";
 
     @Override
     public List<PokemonSetDTO> list() {
@@ -56,12 +55,13 @@ public class PokemonSetServiceImpl implements PokemonSetService {
         try {
             List<PokemonSetDTO> pokemonSetDTOList = readAndConvertFile(FILENAME, PokemonSetDTO.class);
             saveAll(pokemonSetDTOList);
-            log.info(POKEMON_SET_EXPORT_SUCCESS.getEnUS(), pokemonSetDTOList);
+            log.info(POKEMON_SET_EXPORT_SUCCESS.getMessageLocation(language), pokemonSetDTOList);
             return true;
         } catch (IOException e) {
-            log.error(OPERATION_READ_OR_CONVERTER_ERROR.getEnUS(), e.getMessage());
+            log.error(OPERATION_READ_OR_CONVERTER_ERROR.getMessageLocation(language), e.getMessage());
         } catch (Exception e) {
             log.error("Error exporting data: {}", e.getMessage());
+            throw new BusinessException(OPERATION_ERROR.getEnUS());
         }
         return false;
     }
@@ -80,7 +80,7 @@ public class PokemonSetServiceImpl implements PokemonSetService {
     @Override
     public List<PokemonSetDTO> saveAll(List<PokemonSetDTO> modelList) {
         List<PokemonSetDTO> resultList = new ArrayList<>();
-        for (PokemonSetDTO model: modelList) {
+        for (PokemonSetDTO model : modelList) {
             resultList.add(save(model));
         }
         return resultList;
@@ -90,7 +90,7 @@ public class PokemonSetServiceImpl implements PokemonSetService {
     public PokemonSetDTO edit(PokemonSetDTO model) {
         try {
             if (!repository.existsById(model.getUuid())) {
-                throw new BusinessException(POKEMON_SET_NOT_FOUND.getEnUS());
+                throw new BusinessException(POKEMON_SET_NOT_FOUND.getMessageLocation(language));
             }
             return repository.saveAndFlush(model.toEntity()).toDTO();
 
@@ -104,7 +104,7 @@ public class PokemonSetServiceImpl implements PokemonSetService {
     public boolean delete(UUID id) {
         try {
             if (!repository.existsById(id)) {
-                throw new BusinessException(POKEMON_SET_NOT_FOUND.getEnUS());
+                throw new BusinessException(POKEMON_SET_NOT_FOUND.getMessageLocation(language));
             }
             repository.deleteById(id);
         } catch (BusinessException e) {

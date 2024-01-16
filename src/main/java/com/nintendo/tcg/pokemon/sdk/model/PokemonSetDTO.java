@@ -16,9 +16,7 @@ public class PokemonSetDTO extends BaseModel<PokemonSet> {
     public PokemonSetDTO() {
         super(PokemonSet.class);
     }
-
     private UUID uuid;
-
     @JsonProperty("id")
     private String code;
     @JsonProperty("name")
@@ -30,9 +28,9 @@ public class PokemonSetDTO extends BaseModel<PokemonSet> {
     @JsonProperty("total")
     private int total;
     @JsonProperty("legalities")
-    private LegalitiesDTO legalities;
+    private LegalityDTO legalities;
     @JsonProperty("images")
-    private ImagesDTO images;
+    private ImageDTO images;
     @JsonProperty("ptcgoCode")
     private String ptcgoCode;
     @JsonProperty("releaseDate")

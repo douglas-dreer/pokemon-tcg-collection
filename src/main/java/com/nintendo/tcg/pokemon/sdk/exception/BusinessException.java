@@ -1,7 +1,5 @@
 package com.nintendo.tcg.pokemon.sdk.exception;
 
-import com.nintendo.tcg.pokemon.sdk.enums.MessagesEnum;
-
 public class BusinessException extends RuntimeException {
 
     public BusinessException() {

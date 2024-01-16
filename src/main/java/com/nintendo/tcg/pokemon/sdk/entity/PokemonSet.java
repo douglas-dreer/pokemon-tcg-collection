@@ -10,7 +10,7 @@ import lombok.Data;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TBL001_POKEMON_SET")
+@Table(name = "TBL007_POKEMON_SET")
 @AllArgsConstructor
 @Data
 @Builder
@@ -18,25 +18,21 @@ public class PokemonSet extends BaseEntity<PokemonSetDTO> {
     public PokemonSet() {
         super(PokemonSetDTO.class);
     }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID uuid;
-
     private String code;
     private String name;
     private String series;
     private int total;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "legalities_id")
-    private Legalities legalities;
-
+    private Legality legality;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "images_id")
-    private Images images;
-
+    private Image image;
     private String ptcgoCode;
     private String releaseDate;
     private String updatedAt;
+
 }

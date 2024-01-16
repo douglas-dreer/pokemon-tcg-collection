@@ -1,7 +1,6 @@
 package com.nintendo.tcg.pokemon.sdk.model.common;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nintendo.tcg.pokemon.sdk.utility.Converter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,6 @@ import static com.nintendo.tcg.pokemon.sdk.utility.Converter.convertTo;
 
 @NoArgsConstructor
 public abstract class BaseModel<T> implements Identifiable {
-    @JsonIgnore
     private Class<T> entityClass;
 
     protected BaseModel(Class<T> entityClass) {
@@ -24,6 +22,7 @@ public abstract class BaseModel<T> implements Identifiable {
     public T toEntity() {
         return convertTo(this, entityClass);
     }
+
 
     public String toJSON() throws JsonProcessingException {
         return Converter.toJSON(this);

@@ -6,11 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Component;
-import java.lang.reflect.Type;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Component
@@ -24,6 +23,13 @@ public class Converter {
     }
 
     public static <D> D convertTo(Object bean, Class<D> dto) {
+        if (dto == null) {
+            throw new IllegalArgumentException("entityClass must not be null");
+        }
+
+        if (bean == null) {
+            return null;
+        }
         return modelMapper.map(bean, dto);
     }
 
