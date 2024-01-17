@@ -1,9 +1,5 @@
 package com.nintendo.tcg.pokemon.sdk.model.common;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
-import java.io.IOException;
-
 public interface BaseModelTest {
     void mustReturnSuccessWhenInitializeWithAllConstructor();
 
