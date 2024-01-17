@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Ability extends BaseEntity<AbilityDTO> {
     @Id
     @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GenericGenerator(name = "SEQ_ABILITY")
     @Column(columnDefinition = "BINARY(16)")
     private UUID uuid;
 

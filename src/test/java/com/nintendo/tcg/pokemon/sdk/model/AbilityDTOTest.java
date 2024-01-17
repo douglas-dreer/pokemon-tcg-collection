@@ -1,7 +1,9 @@
 package com.nintendo.tcg.pokemon.sdk.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nintendo.tcg.pokemon.sdk.entity.Ability;
 import com.nintendo.tcg.pokemon.sdk.model.common.BaseModelTest;
+import com.nintendo.tcg.pokemon.sdk.utility.Converter;
 import com.nintendo.tcg.pokemon.sdk.utility.InformationGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
