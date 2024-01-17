@@ -68,7 +68,7 @@ public class AbilityDTOTest extends InformationGenerator implements BaseModelTes
 
     @Override
     @Test
-    public void mustReturnSuccessWhenConvertToEntity() throws Exception {
+    public void mustReturnSuccessWhenConvertToEntity() {
         Ability entity = dto.toEntity();
         checking(entity);
 
