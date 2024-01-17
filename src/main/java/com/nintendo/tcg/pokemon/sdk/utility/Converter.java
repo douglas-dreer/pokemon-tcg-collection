@@ -1,10 +1,12 @@
 package com.nintendo.tcg.pokemon.sdk.utility;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 @Component
+@Log4j2
 public class Converter {
     private static final ModelMapper modelMapper = new ModelMapper();
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -30,7 +33,9 @@ public class Converter {
         if (bean == null) {
             return null;
         }
+
         return modelMapper.map(bean, dto);
+
     }
 
     public static <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
@@ -51,5 +56,19 @@ public class Converter {
     public static <K, T> List<K> toList(String contentJSON, Class<T> targetClass) throws JsonProcessingException {
         Type type = mapper.getTypeFactory().constructCollectionType(List.class, targetClass);
         return mapper.readValue(contentJSON, (JavaType) type);
+    }
+
+    public static boolean isValidJson(String jsonString) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.readTree(jsonString);
+            return true;
+        } catch (JsonParseException e) {
+            log.error("Json is invalid");
+            return false;
+        } catch (Exception e) {
+            e.getLocalizedMessage();
+            return false;
+        }
     }
 }

@@ -1,27 +1,21 @@
 package com.nintendo.tcg.pokemon.sdk.model;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nintendo.tcg.pokemon.sdk.entity.SuperType;
 import com.nintendo.tcg.pokemon.sdk.enums.SuperTypesEnum;
 import com.nintendo.tcg.pokemon.sdk.model.common.BaseModelTest;
 import com.nintendo.tcg.pokemon.sdk.utility.InformationGenerator;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @SpringBootTest
-public class SuperTypeDTOModelTest extends InformationGenerator implements BaseModelTest {
-
-
+class SuperTypeDTOTest extends InformationGenerator implements BaseModelTest {
     private static SuperTypeDTO dto;
     private static UUID uuid;
     private static SuperTypesEnum name;
@@ -35,10 +29,24 @@ public class SuperTypeDTOModelTest extends InformationGenerator implements BaseM
 
     @Override
     @Test
-    public void mustReturnSuccessWhenInitializeWithConstructor() {
+    public void mustReturnSuccessWhenInitializeWithAllConstructor() {
         SuperTypeDTO result = new SuperTypeDTO(uuid, name);
         checking(result);
     }
+
+    @Test
+    void mustReturnSuccessWhenIntializeWithParamEnum() {
+        SuperTypeDTO result = new SuperTypeDTO(name);
+        checkingWithIncompleteData(result);
+    }
+
+    @Test
+    void mustReturnSuccessWhenIntializeWithParamsSuperType() {
+        SuperTypeDTO result = new SuperTypeDTO(name.getSuperType());
+        checkingWithIncompleteData(result);
+    }
+
+
 
     @Override
     @Test
@@ -61,49 +69,36 @@ public class SuperTypeDTOModelTest extends InformationGenerator implements BaseM
 
     @Override
     @Test
-    @Disabled("Este teste vai ser disabilitado, por causa que necessita ser uma classe abstrata")
     public void mustReturnSuccessWhenConvertToEntity() {
-        SuperType result = dto.toEntity();
-        checking(result);
+        SuperType resultEntity = dto.toEntity();
+        checking(resultEntity);
     }
 
     @Override
     @Test
-    public void mustReturnSuccessWhenConvertToJSON() throws JsonProcessingException {
-        String dtoJSON = dto.toJSON();
-        assertFalse(dtoJSON.isBlank());
-    }
-
-    @Override
-    @Test
-    @Disabled("Este teste vai ser disabilitado, por causa que necessita ser uma classe abstrata")
-    public void mustReturnSuccessWhenConterToObject() throws IOException {
-        final String toJSON = dto.toJSON();
-        checking(dto.toObject(toJSON));
-    }
-
-    @Override
-    @Test
-    @Disabled("Este teste vai ser disabilitado, por causa que necessita ser uma classe abstrata")
     public void mustReturnSuccessWhenEquals() {
-        List<SuperTypeDTO> superTypeDTOList = createThreeDifferentSuperTypeDTO();
-
-        assertThat(superTypeDTOList.get(0)).isEqualTo(superTypeDTOList.get(1));
-        assertThat(superTypeDTOList.get(0)).isNotEqualTo(superTypeDTOList.get(2));
+        List<SuperTypeDTO> dtoList = createThreeDifferentSuperTypeDTO();
+        assertAll(
+                "Verify result list",
+                () -> assertThat(dtoList.get(0)).isEqualTo(dtoList.get(1)),
+                () -> assertThat(dtoList.get(0)).isNotEqualTo(dtoList.get(2))
+        );
     }
 
     @Override
     @Test
     public void mustReturnSuccessWhenHash() {
-        List<SuperTypeDTO> superTypeDTOList = createThreeDifferentSuperTypeDTO();
-
-        assertThat(superTypeDTOList.get(0).hashCode()).isEqualTo(superTypeDTOList.get(1).hashCode());
-        assertThat(superTypeDTOList.get(0).hashCode()).isNotEqualTo(superTypeDTOList.get(2).hashCode());
+        List<SuperTypeDTO> dtoList = createThreeDifferentSuperTypeDTO();
+        assertAll(
+                "Verify result list",
+                () -> assertThat(dtoList.get(0)).hasSameHashCodeAs(dtoList.get(1).hashCode()),
+                () -> assertThat(dtoList.get(0).hashCode()).isNotEqualTo(dtoList.get(2).hashCode())
+        );
     }
 
-    public void checking(SuperTypeDTO datas) {
+    private void checking(SuperTypeDTO datas) {
         assertAll("Verify result list",
-                () -> assertNotNull(datas, "The SuperTypeDTO should not be null"),
+                () -> assertNotNull(datas, "The music should not be null"),
                 () -> assertNotNull(datas.getUuid(), "The id should not be null"),
                 () -> assertEquals(uuid, datas.getUuid(), "The element id must be the same as the one sent"),
                 () -> assertNotNull(datas.getName(), "The name should not be null"),
@@ -111,9 +106,9 @@ public class SuperTypeDTOModelTest extends InformationGenerator implements BaseM
         );
     }
 
-    public void checking(SuperType datas) {
+    private void checking(SuperType datas) {
         assertAll("Verify result list",
-                () -> assertNotNull(datas, "The SuperTypeDTO should not be null"),
+                () -> assertNotNull(datas, "The music should not be null"),
                 () -> assertNotNull(datas.getUuid(), "The id should not be null"),
                 () -> assertEquals(uuid, datas.getUuid(), "The element id must be the same as the one sent"),
                 () -> assertNotNull(datas.getName(), "The name should not be null"),
@@ -121,5 +116,13 @@ public class SuperTypeDTOModelTest extends InformationGenerator implements BaseM
         );
     }
 
-
+    private void checkingWithIncompleteData(SuperTypeDTO datas) {
+        assertAll(
+                "Checking with data incomplete",
+                () -> assertNotNull(datas, "The SubType should not be null"),
+                () -> assertNull(datas.getUuid(), "The id should be null"),
+                () -> assertNotNull(datas.getName(), "The name should not be null"),
+                () -> assertEquals(datas.getName(), name, "The element name must be the same as the one sent" )
+        );
+    }
 }

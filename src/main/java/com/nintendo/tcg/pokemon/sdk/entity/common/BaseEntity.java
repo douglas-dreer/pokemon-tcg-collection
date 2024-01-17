@@ -1,10 +1,8 @@
 package com.nintendo.tcg.pokemon.sdk.entity.common;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
@@ -29,11 +27,11 @@ public abstract class BaseEntity<T> {
         return convertTo(this, modelClass);
     }
 
-    public String toJSON(BaseEntity<T> BaseEntity) throws JsonProcessingException {
+    public String toJSON(BaseEntity<T> BaseEntity) {
         return toJSON(this);
     }
 
-    public T toObject(String dados, Class<T> modelClass) throws IOException {
+    public T toObject(String dados, Class<T> modelClass) {
         return toObject(dados, this.modelClass);
     }
 }

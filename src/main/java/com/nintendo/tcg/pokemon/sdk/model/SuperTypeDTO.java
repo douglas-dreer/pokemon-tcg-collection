@@ -4,26 +4,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nintendo.tcg.pokemon.sdk.entity.SuperType;
 import com.nintendo.tcg.pokemon.sdk.enums.SuperTypesEnum;
 import com.nintendo.tcg.pokemon.sdk.model.common.BaseModel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
-@AllArgsConstructor
-@Data
-@Builder
+@NoArgsConstructor
+@SuperBuilder
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
 public class SuperTypeDTO extends BaseModel<SuperType> {
     private UUID uuid;
     @JsonProperty("supertype")
     private SuperTypesEnum name;
 
-    public SuperTypeDTO() {
+    @Builder
+    public SuperTypeDTO(UUID uuid, SuperTypesEnum name) {
         super(SuperType.class);
+        this.uuid = uuid;
+        this.name = name;
     }
 
-    public SuperTypeDTO(String value) {
+    public SuperTypeDTO(SuperTypesEnum name) {
         super(SuperType.class);
-        this.name = SuperTypesEnum.findByName(value);
+        this.name = name;
+    }
+
+    public SuperTypeDTO(String superType) {
+        super(SuperType.class);
+        this.name = SuperTypesEnum.findByName(superType);
     }
 }

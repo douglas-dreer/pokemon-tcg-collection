@@ -4,6 +4,7 @@ package com.nintendo.tcg.pokemon.sdk.model.common;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nintendo.tcg.pokemon.sdk.utility.Converter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -11,6 +12,7 @@ import java.util.Objects;
 import static com.nintendo.tcg.pokemon.sdk.utility.Converter.convertTo;
 
 @NoArgsConstructor
+@SuperBuilder
 public abstract class BaseModel<T> implements Identifiable {
     private Class<T> entityClass;
 
@@ -30,5 +32,9 @@ public abstract class BaseModel<T> implements Identifiable {
 
     public T toObject(String dados) throws IOException {
         return Converter.toObject(dados, entityClass);
+    }
+
+    public boolean isValid() throws JsonProcessingException {
+        return Converter.isValidJson(this.toJSON());
     }
 }
