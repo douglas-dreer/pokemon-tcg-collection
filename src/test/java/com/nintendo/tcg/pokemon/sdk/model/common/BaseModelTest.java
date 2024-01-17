@@ -5,18 +5,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 
 public interface BaseModelTest {
-
-    void mustReturnSuccessWhenInitializeWithConstructor();
+    void mustReturnSuccessWhenInitializeWithAllConstructor();
 
     void mustReturnSuccessWhenInitializeWithSetters();
 
     void mustReturnSuccessWhenInitializeWithBuilder();
 
-    void mustReturnSuccessWhenConvertToEntity();
+    void mustReturnSuccessWhenConvertToEntity() throws Exception;
 
-    void mustReturnSuccessWhenConvertToJSON() throws JsonProcessingException;
+    // void mustReturnSuccessWhenConvertToJSON() throws JsonProcessingException;
 
-    void mustReturnSuccessWhenConterToObject() throws IOException;
+    // void mustReturnSuccessWhenConterToObject() throws IOException;
     void mustReturnSuccessWhenEquals();
     void mustReturnSuccessWhenHash();
 }
