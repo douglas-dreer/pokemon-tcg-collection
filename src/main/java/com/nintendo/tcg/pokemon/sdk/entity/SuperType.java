@@ -21,7 +21,7 @@ import java.util.UUID;
 public class SuperType extends BaseEntity<SuperTypeDTO> {
     @Id
     @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2")
+    @GenericGenerator(name = "SEQ_SUPERTYPE")
     @Column(columnDefinition = "BINARY(16)")
     private UUID uuid;
     @Enumerated(EnumType.STRING)

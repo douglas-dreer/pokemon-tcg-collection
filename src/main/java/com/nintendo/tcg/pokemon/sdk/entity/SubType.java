@@ -19,7 +19,7 @@ import java.util.UUID;
 public class SubType extends BaseEntity<SubTypeDTO> {
     @Id
     @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2")
+    @GenericGenerator(name = "SEQ_SUBTYPE")
     @Column(columnDefinition = "BINARY(16)")
     private UUID uuid;
     @Enumerated(EnumType.STRING)

@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Weakness extends BaseEntity<WeaknessDTO> {
     @Id
     @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2")
+    @GenericGenerator(name = "SEQ_WEAKNESS")
     @Column(columnDefinition = "BINARY(16)")
     private UUID uuid;
     @ManyToOne
