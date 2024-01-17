@@ -5,7 +5,8 @@ import com.nintendo.tcg.pokemon.sdk.model.AttackDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "TBL002_ATTACKS")
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class Attack extends BaseEntity<AttackDTO> {
     @Id

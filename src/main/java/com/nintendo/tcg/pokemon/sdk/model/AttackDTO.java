@@ -5,13 +5,15 @@ import com.nintendo.tcg.pokemon.sdk.entity.Attack;
 import com.nintendo.tcg.pokemon.sdk.model.common.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class AttackDTO extends BaseModel<Attack> {
     private UUID uuid;
