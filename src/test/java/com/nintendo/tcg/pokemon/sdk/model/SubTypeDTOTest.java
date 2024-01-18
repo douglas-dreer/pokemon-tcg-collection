@@ -34,8 +34,9 @@ class SubTypeDTOTest extends InformationGenerator implements BaseModelTest {
         checking(result);
     }
 
+    @Override
     @Test
-    void mustReturnSuccessWhenInitializeWithOnlyOnlyWithNameEnum() {
+    public void mustReturnSuccessWhenInitializeWithoutId() {
         SubTypeDTO result = new SubTypeDTO(name);
         checkingWithIncompleteData(result);
     }

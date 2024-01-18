@@ -42,8 +42,9 @@ public class AttackDTOTest extends InformationGenerator implements BaseModelTest
         checking(result);
     }
 
+    @Override
     @Test
-    void mustReturnSuccessWhenInitializeWithoutId() {
+    public void mustReturnSuccessWhenInitializeWithoutId() {
         AttackDTO result = new AttackDTO(name, cost, convertedEnergyCost, damage, text);
         checkingWithIncompleteData(result);
     }

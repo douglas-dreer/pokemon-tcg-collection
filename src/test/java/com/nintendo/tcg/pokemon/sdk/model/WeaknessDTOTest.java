@@ -37,8 +37,9 @@ class WeaknessDTOTest extends InformationGenerator implements BaseModelTest {
         checking(result);
     }
 
+    @Override
     @Test
-    void mustReturnSuccessWhenInitializeWithOnlyOnlyWithTypeEnum() {
+    public void mustReturnSuccessWhenInitializeWithoutId() {
         WeaknessDTO result = new WeaknessDTO(type, vulnerability);
         checkingWithIncompleteData(result);
     }

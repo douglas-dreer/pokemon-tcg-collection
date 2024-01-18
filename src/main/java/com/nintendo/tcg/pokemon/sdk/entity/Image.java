@@ -5,7 +5,8 @@ import com.nintendo.tcg.pokemon.sdk.model.ImageDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
@@ -13,12 +14,13 @@ import java.util.UUID;
 @Entity
 @Table(name = "TBL005_IMAGES")
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class Image extends BaseEntity<ImageDTO> {
     @Id
     @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GenericGenerator(name = "SEQ_IMAGE")
     @Column(columnDefinition = "BINARY(16)")
     private UUID uuid;
 

@@ -34,8 +34,9 @@ class SuperTypeDTOTest extends InformationGenerator implements BaseModelTest {
         checking(result);
     }
 
+    @Override
     @Test
-    void mustReturnSuccessWhenIntializeWithParamEnum() {
+    public void mustReturnSuccessWhenInitializeWithoutId() {
         SuperTypeDTO result = new SuperTypeDTO(name);
         checkingWithIncompleteData(result);
     }

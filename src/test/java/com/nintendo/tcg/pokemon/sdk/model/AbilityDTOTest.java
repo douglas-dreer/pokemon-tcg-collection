@@ -38,7 +38,8 @@ public class AbilityDTOTest extends InformationGenerator implements BaseModelTes
     }
 
     @Test
-    void mustReturnSuccessWhenInitializeWithoutId() {
+    @Override
+    public void mustReturnSuccessWhenInitializeWithoutId() {
         AbilityDTO result = new AbilityDTO(name, text, type);
         checkingWithIncompleteData(result);
     }

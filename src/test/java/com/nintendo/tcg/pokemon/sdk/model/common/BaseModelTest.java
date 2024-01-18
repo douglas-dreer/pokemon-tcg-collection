@@ -2,6 +2,7 @@ package com.nintendo.tcg.pokemon.sdk.model.common;
 
 public interface BaseModelTest {
     void mustReturnSuccessWhenInitializeWithAllConstructor();
+    void mustReturnSuccessWhenInitializeWithoutId();
 
     void mustReturnSuccessWhenInitializeWithSetters();
 
